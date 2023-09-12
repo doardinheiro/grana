@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulação de Saldo</title>
+    <style>
+        /* Estilos CSS para melhorar a aparência da página */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Saldo: <span id="saldo">1,000,000</span></h1>
+    <label for="nome">Nome da Pessoa:</label>
+    <input type="text" id="nome" placeholder="Digite o nome da pessoa">
+    <br>
+    <label for="valor">Valor a Enviar:</label>
+    <input type="number" id="valor" placeholder="Digite o valor">
+    <br>
+    <button onclick="enviarValor()">Enviar</button>
+
+    <script>
+        // Função para enviar um valor
+        function enviarValor() {
+            var nome = document.getElementById("nome").value;
+            var valor = parseFloat(document.getElementById("valor").value);
+
+            if (!isNaN(valor)) {
+                var saldoAtual = parseFloat(document.getElementById("saldo").textContent.replace(",", ""));
+                saldoAtual -= valor;
+
+                if (saldoAtual >= 0) {
+                    document.getElementById("saldo").textContent = saldoAtual.toLocaleString();
+                    alert("Valor enviado para " + nome);
+                } else {
+                    alert("Saldo insuficiente");
+                }
+            } else {
+                alert("Digite um valor válido");
+            }
+        }
+    </script>
+</body>
+</html>
